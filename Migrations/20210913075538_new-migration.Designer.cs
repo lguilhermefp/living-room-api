@@ -10,7 +10,7 @@ using living_room_api.Data;
 namespace living_room_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210913050329_new-migration")]
+    [Migration("20210913075538_new-migration")]
     partial class newmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,43 +120,54 @@ namespace living_room_api.Migrations
 
             modelBuilder.Entity("living_room_api.Data.PersonComputer", b =>
                 {
-                    b.Property<string>("PersonId")
+                    b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ComputerId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PersonId");
+                    b.Property<string>("PersonId")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("PersonComputer");
+                    b.HasKey("ID");
+
+                    b.ToTable("PeopleComputers");
                 });
 
             modelBuilder.Entity("living_room_api.Data.PersonHomeTheater", b =>
                 {
-                    b.Property<string>("PersonId")
+                    b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("HomeTheaterId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PersonId");
+                    b.Property<string>("PersonId")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("PersonHomeTheater");
+                    b.HasKey("ID");
+
+                    b.ToTable("PeopleHomeTheaters");
                 });
 
             modelBuilder.Entity("living_room_api.Data.PersonTelevision", b =>
                 {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("PersonId")
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("TelevisionId")
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("PersonId");
+                    b.HasKey("ID");
+
+                    b.HasIndex("PersonId");
 
                     b.HasIndex("TelevisionId");
 
-                    b.ToTable("PersonTelevision");
+                    b.ToTable("PeopleTelevisions");
                 });
 
             modelBuilder.Entity("living_room_api.Data.Television", b =>
@@ -236,9 +247,7 @@ namespace living_room_api.Migrations
                 {
                     b.HasOne("living_room_api.Data.Person", "Person")
                         .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PersonId");
 
                     b.HasOne("living_room_api.Data.Television", "Television")
                         .WithMany()

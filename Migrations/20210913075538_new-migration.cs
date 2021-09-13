@@ -54,27 +54,29 @@ namespace living_room_api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonComputer",
+                name: "PeopleComputers",
                 columns: table => new
                 {
-                    PersonId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PersonId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ComputerId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonComputer", x => x.PersonId);
+                    table.PrimaryKey("PK_PeopleComputers", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonHomeTheater",
+                name: "PeopleHomeTheaters",
                 columns: table => new
                 {
-                    PersonId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PersonId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HomeTheaterId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonHomeTheater", x => x.PersonId);
+                    table.PrimaryKey("PK_PeopleHomeTheaters", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,23 +109,24 @@ namespace living_room_api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonTelevision",
+                name: "PeopleTelevisions",
                 columns: table => new
                 {
-                    PersonId = table.Column<string>(type: "nvarchar(10)", nullable: false),
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PersonId = table.Column<string>(type: "nvarchar(10)", nullable: true),
                     TelevisionId = table.Column<string>(type: "nvarchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonTelevision", x => x.PersonId);
+                    table.PrimaryKey("PK_PeopleTelevisions", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_PersonTelevision_People_PersonId",
+                        name: "FK_PeopleTelevisions_People_PersonId",
                         column: x => x.PersonId,
                         principalTable: "People",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PersonTelevision_Televisions_TelevisionId",
+                        name: "FK_PeopleTelevisions_Televisions_TelevisionId",
                         column: x => x.TelevisionId,
                         principalTable: "Televisions",
                         principalColumn: "ID",
@@ -146,8 +149,13 @@ namespace living_room_api.Migrations
                 values: new object[] { "admin-123", "admin@example.com", "admin", "V1ZkU2RHRlhOSGhOYWsw" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersonTelevision_TelevisionId",
-                table: "PersonTelevision",
+                name: "IX_PeopleTelevisions_PersonId",
+                table: "PeopleTelevisions",
+                column: "PersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PeopleTelevisions_TelevisionId",
+                table: "PeopleTelevisions",
                 column: "TelevisionId");
 
             migrationBuilder.CreateIndex(
@@ -166,13 +174,13 @@ namespace living_room_api.Migrations
                 name: "HomeTheaters");
 
             migrationBuilder.DropTable(
-                name: "PersonComputer");
+                name: "PeopleComputers");
 
             migrationBuilder.DropTable(
-                name: "PersonHomeTheater");
+                name: "PeopleHomeTheaters");
 
             migrationBuilder.DropTable(
-                name: "PersonTelevision");
+                name: "PeopleTelevisions");
 
             migrationBuilder.DropTable(
                 name: "Users");

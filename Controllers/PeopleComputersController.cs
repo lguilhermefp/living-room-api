@@ -14,12 +14,12 @@ namespace living_room_api.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonComputerController : ControllerBase
+    public class PeopleComputersController : ControllerBase
     {
         private readonly AppDbContext _context;
 
         private readonly IJwtAuthenticationManager jwtAuthenticationManager;
-        public PersonComputerController (AppDbContext context, IJwtAuthenticationManager jwtAuthenticationManager)
+        public PeopleComputersController (AppDbContext context, IJwtAuthenticationManager jwtAuthenticationManager)
         {
             this.jwtAuthenticationManager = jwtAuthenticationManager;
             this._context = context;
@@ -36,13 +36,13 @@ namespace living_room_api.Controllers
         /// <response code="200">Retorna a lista requisitada</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="500">Se houve falha na conexao com o banco de dados</response>
-        [ProducesResponseType(typeof(IEnumerable<Person>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<PersonComputer>), 200)]
         [ProducesResponseType(401)]
         [ProducesResponseType(500)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Person>>> GetPersonComputer()
+        public async Task<ActionResult<IEnumerable<PersonComputer>>> GetPersonComputer()
         {
-            return await _context.PersonComputer.ToListAsync();
+            return await _context.PeopleComputers.ToListAsync();
         }
 
         /// <summary>
@@ -52,34 +52,64 @@ namespace living_room_api.Controllers
         ///     Exemplo de requisicao:
         ///         GET api/People/abcd-12345
         /// </remarks>
-        /// <param name="ID"></param>
+        /// <param name="personId"></param>
         /// <returns>Os detalhes da pessoa requisitada</returns>
         /// <response code="200">Retorna a pessoa requisitada</response>
         /// <response code="400">Se não houver pessoa com esse ID</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
 		/// <response code="500">Se houve falha de conexao com o banco de dados</response>
-        [ProducesResponseType(typeof(Person), 200)]
+        [ProducesResponseType(typeof(IEnumerable<PersonComputer>), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [ProducesResponseType(500)]
-        [HttpGet("{ID}")]
-        public async Task<ActionResult<Person>> GetPerson(string ID)
+        [HttpGet("people/{personId}")]
+        public async Task<ActionResult<IEnumerable<PersonComputer>>> GetPersonComputers(string personId)
         {
-            var person = await _context.People.FindAsync(ID);
+            var PersonComputers = await _context.PeopleComputers.Where(pC => pC.PersonId.Equals(personId)).ToListAsync();
 
-            if (person == null)
+            if (PersonComputers == null)
             {
                 return NotFound();
             }
 
-            return Ok(person);
+            return Ok(PersonComputers);
+        }
+
+		/// <summary>
+        /// Retorna os detalhes da pessoa requisitada
+        /// </summary>
+        /// <remarks>
+        ///     Exemplo de requisicao:
+        ///         GET api/People/abcd-12345
+        /// </remarks>
+        /// <param name="computerId"></param>
+        /// <returns>Os detalhes da pessoa requisitada</returns>
+        /// <response code="200">Retorna a pessoa requisitada</response>
+        /// <response code="400">Se não houver pessoa com esse ID</response>
+        /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
+		/// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        [ProducesResponseType(typeof(IEnumerable<PersonComputer>), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(500)]
+        [HttpGet("computers/{computerId}")]
+        public async Task<ActionResult<IEnumerable<PersonComputer>>> GetPeopleComputer(string computerId)
+        {
+            var PeopleComputer = await _context.PeopleComputers.Where(pC => pC.ComputerId.Equals(computerId)).ToListAsync();
+
+            if (PeopleComputer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(PeopleComputer);
         }
 
         /// <summary>
         /// Altera informacoes de uma pessoa existente
         /// </summary>
         /// <param name="ID"></param>
-        /// <param name="person"></param>
+        /// <param name="personComputer"></param>
         /// <remarks>
         ///     Exemplo de requisicao:
         ///         Put api/People/abcd-12345
@@ -95,14 +125,14 @@ namespace living_room_api.Controllers
         [ProducesResponseType(401)]
         [ProducesResponseType(500)]
         [HttpPut("{ID}")]
-        public async Task<IActionResult> PutPerson(string ID, Person person)
+        public async Task<IActionResult> PutPersonComputer(string ID, PersonComputer personComputer)
         {
-            if (ID != person.ID)
+            if (ID != personComputer.ID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(person).State = EntityState.Modified;
+            _context.Entry(personComputer).State = EntityState.Modified;
 
             try
             {
@@ -126,7 +156,7 @@ namespace living_room_api.Controllers
         /// <summary>
         /// Cria uma nova pessoa
         /// </summary>
-        /// <param name="person"></param>
+        /// <param name="personComputer"></param>
         /// <remarks>
         ///     Requisicao padrao:
         ///         Post api/People/
@@ -141,22 +171,22 @@ namespace living_room_api.Controllers
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="409">Se ja houver uma pessoa com ID ou Email fornecidos</response>
         /// <response code="500">Se houve falha de conexao com o banco de dados</response>
-        [ProducesResponseType(typeof(Person), 201)]
+        [ProducesResponseType(typeof(PersonComputer), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [ProducesResponseType(409)]
         [ProducesResponseType(500)]
         [HttpPost]
-        public async Task<ActionResult<Person>> PostPerson(Person person)
+        public async Task<ActionResult<PersonComputer>> PostPersonComputer(PersonComputer personComputer)
         {
-            _context.People.Add(person);
+            _context.PeopleComputers.Add(personComputer);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (IDOrEmailNotAvailable(person.ID, person.Email))
+                if (IDNotAvailable(personComputer.ID))
                 {
                     return Conflict();
                 }
@@ -166,7 +196,7 @@ namespace living_room_api.Controllers
                 }
             }
 
-            return CreatedAtAction("GetPerson", new { id = person.ID }, person);
+            return CreatedAtAction("GetPersonComputer", new { id = personComputer.ID }, personComputer);
         }
 
         /// <summary>
@@ -175,7 +205,7 @@ namespace living_room_api.Controllers
         /// <param name="ID"></param>
         /// <remarks>
         ///     Exemplo de requisicao:
-        ///         Delete api/People/abcd-12345
+        ///         Delete api/ComputersPeople/abcd-12345
         /// </remarks>
         /// <returns>Retorna os detalhes da pessoa excluido</returns>
         /// <response code="204">Exclui um produto existente</response>
@@ -187,30 +217,24 @@ namespace living_room_api.Controllers
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         [HttpDelete("{ID}")]
-        public async Task<IActionResult> DeletePerson(string ID)
+        public async Task<IActionResult> DeletePersonComputer(string ID)
         {
-            var person = await _context.People.FindAsync(ID);
-            if (person == null)
+            var personComputer = await _context.PeopleComputers.FindAsync(ID);
+            if (personComputer == null)
             {
                 return NotFound();
             }
 
-            _context.People.Remove(person);
+            _context.PeopleComputers.Remove(personComputer);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
         [NonAction]
-        public bool IDOrEmailNotAvailable(string ID, string email)
-        {
-            return _context.People.Any(e => e.ID == ID || e.Email == email);
-        }
-
-        [NonAction]
         public bool IDNotAvailable(string ID)
         {
-            return _context.People.Any(e => e.ID == ID);
+            return _context.PeopleComputers.Any(e => e.ID == ID);
         }
 
         public static string EncodePasswordToBase64(string password)

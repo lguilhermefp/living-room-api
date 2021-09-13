@@ -18,9 +18,9 @@ namespace living_room_api.Data
         public DbSet<Television> Televisions { get; set; }
         public DbSet<Computer> Computers { get; set; }
         public DbSet<HomeTheater> HomeTheaters { get; set; }
-		public DbSet<PersonHomeTheater> PersonHomeTheater { get; set; }
-        public DbSet<PersonComputer> PersonComputer { get; set; }
-        public DbSet<PersonTelevision> PersonTelevision { get; set; }
+		public DbSet<PersonHomeTheater> PeopleHomeTheaters { get; set; }
+        public DbSet<PersonComputer> PeopleComputers { get; set; }
+        public DbSet<PersonTelevision> PeopleTelevisions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace living_room_api.Data
 
 			modelBuilder.Entity<Person>()
 				.HasData(
-					new Person { ID = "1234567890", /*TelevisionID = "1234567890",*/ LastName = "blabla", FirstName = "blublu", CountryBirthLocation = "Brazil", Email = "email@example.com" });
+					new Person { ID = "1234567890", LastName = "blabla", FirstName = "blublu", CountryBirthLocation = "Brazil", Email = "email@example.com" });
 
 
     		// modelBuilder.Entity<Person>()

@@ -8,6 +8,8 @@ namespace living_room_api.Data
 	public class PersonHomeTheater
 	{
 		[Key]
+		public string ID { get; set; }
+
 		[ForeignKey("Person")]
 		public string PersonId { get; set; }
 

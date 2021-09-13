@@ -8,8 +8,11 @@ namespace living_room_api.Data
 	public class PersonTelevision
 	{
 		[Key]
+		public string ID { get; set; }
+
 		[ForeignKey("Person")]
 		public string PersonId { get; set; }
+
 		[ForeignKey("Television")]
 		public string TelevisionId { get; set; }
 		public virtual Person Person { get; set; }
