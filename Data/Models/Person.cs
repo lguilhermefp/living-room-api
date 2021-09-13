@@ -29,12 +29,12 @@ namespace living_room_api.Data
 		// public string HomeTheaterID { get; set; }
 
         [Required]
-        [StringLength(60)]
+        [MaxLength(60)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required]
-        [StringLength(60, ErrorMessage = "First name cannot be longer than 60 characters.")]
+		[MaxLength(60)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
@@ -44,7 +44,7 @@ namespace living_room_api.Data
         public DateTime? BirthDate { get; set; }
 
 		[Required]
-		[StringLength(60, ErrorMessage = "First name cannot be longer than 60 characters.")]
+		[MaxLength(60)]
         [Display(Name = "Country Birth Location")]
 		public string CountryBirthLocation { get; set; }
 

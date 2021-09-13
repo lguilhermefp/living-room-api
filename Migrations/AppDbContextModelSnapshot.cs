@@ -38,7 +38,13 @@ namespace living_room_api.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("isActive")
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(16,2)");
+
+                    b.Property<bool>("isBeingSold")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isDesktop")
                         .HasColumnType("bit");
 
                     b.HasKey("ID");
@@ -65,7 +71,13 @@ namespace living_room_api.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("isActive")
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(16,2)");
+
+                    b.Property<bool>("isBeingSold")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("readsBlueRay")
                         .HasColumnType("bit");
 
                     b.HasKey("ID");
@@ -119,13 +131,16 @@ namespace living_room_api.Migrations
             modelBuilder.Entity("living_room_api.Data.PersonComputer", b =>
                 {
                     b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("ComputerId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("PersonId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("ID");
 
@@ -135,13 +150,16 @@ namespace living_room_api.Migrations
             modelBuilder.Entity("living_room_api.Data.PersonHomeTheater", b =>
                 {
                     b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("HomeTheaterId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("PersonId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("ID");
 
@@ -151,19 +169,18 @@ namespace living_room_api.Migrations
             modelBuilder.Entity("living_room_api.Data.PersonTelevision", b =>
                 {
                     b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("PersonId")
+                        .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("TelevisionId")
+                        .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("PersonId");
-
-                    b.HasIndex("TelevisionId");
 
                     b.ToTable("PeopleTelevisions");
                 });
@@ -187,7 +204,13 @@ namespace living_room_api.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("isActive")
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(16,2)");
+
+                    b.Property<bool>("is3D")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isBeingSold")
                         .HasColumnType("bit");
 
                     b.HasKey("ID");
@@ -200,15 +223,17 @@ namespace living_room_api.Migrations
                             ID = "1111111111",
                             Brand = "Vony",
                             Model = "bleble",
-                            isActive = false
+                            Value = 0m,
+                            is3D = false,
+                            isBeingSold = false
                         });
                 });
 
             modelBuilder.Entity("living_room_api.Data.User", b =>
                 {
                     b.Property<string>("ID")
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -234,26 +259,11 @@ namespace living_room_api.Migrations
                     b.HasData(
                         new
                         {
-                            ID = "admin-123",
+                            ID = "admin-1234",
                             Email = "admin@example.com",
                             Name = "admin",
                             Password = "V1ZkU2RHRlhOSGhOYWsw"
                         });
-                });
-
-            modelBuilder.Entity("living_room_api.Data.PersonTelevision", b =>
-                {
-                    b.HasOne("living_room_api.Data.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId");
-
-                    b.HasOne("living_room_api.Data.Television", "Television")
-                        .WithMany()
-                        .HasForeignKey("TelevisionId");
-
-                    b.Navigation("Person");
-
-                    b.Navigation("Television");
                 });
 #pragma warning restore 612, 618
         }

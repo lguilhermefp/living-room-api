@@ -57,7 +57,7 @@ namespace living_room_api.Controllers
         /// <response code="200">Retorna a televisao requisitada</response>
         /// <response code="400">Se não houver televisao com esse ID</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-		/// <response code="500">Se houve falha de conexao com o banco de dados</response>
+		/// <response code="500">Se o banco de dados retournou erro</response>
         [ProducesResponseType(typeof(Television), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -92,7 +92,7 @@ namespace living_room_api.Controllers
         /// <response code="400">Se algum dos campos do "body" da requisicao possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="409">Se ja houver uma televisao com ID fornecido</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retournou erro</response>
         [ProducesResponseType(typeof(Television), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -135,7 +135,7 @@ namespace living_room_api.Controllers
         /// <response code="204">Atualiza a televisao requisitado</response>
         /// <response code="400">Se nao existe televisao com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retournou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -182,7 +182,7 @@ namespace living_room_api.Controllers
         /// <response code="204">Exclui uma televisao existente</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="404">Se nao existe televisao com ID informado</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retournou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]

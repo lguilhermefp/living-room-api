@@ -15,7 +15,9 @@ namespace living_room_api.Migrations
                     Brand = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                    Value = table.Column<decimal>(type: "decimal(16,2)", nullable: false),
+                    isBeingSold = table.Column<bool>(type: "bit", nullable: false),
+                    isDesktop = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,7 +32,9 @@ namespace living_room_api.Migrations
                     Brand = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                    Value = table.Column<decimal>(type: "decimal(16,2)", nullable: false),
+                    isBeingSold = table.Column<bool>(type: "bit", nullable: false),
+                    readsBlueRay = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,9 +61,9 @@ namespace living_room_api.Migrations
                 name: "PeopleComputers",
                 columns: table => new
                 {
-                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PersonId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ComputerId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ID = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    PersonId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    ComputerId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -70,13 +74,26 @@ namespace living_room_api.Migrations
                 name: "PeopleHomeTheaters",
                 columns: table => new
                 {
-                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PersonId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HomeTheaterId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ID = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    PersonId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    HomeTheaterId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PeopleHomeTheaters", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PeopleTelevisions",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    PersonId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    TelevisionId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PeopleTelevisions", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,7 +104,9 @@ namespace living_room_api.Migrations
                     Brand = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                    Value = table.Column<decimal>(type: "decimal(16,2)", nullable: false),
+                    is3D = table.Column<bool>(type: "bit", nullable: false),
+                    isBeingSold = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,7 +117,7 @@ namespace living_room_api.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    ID = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    ID = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false)
@@ -108,31 +127,6 @@ namespace living_room_api.Migrations
                     table.PrimaryKey("PK_Users", x => x.ID);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "PeopleTelevisions",
-                columns: table => new
-                {
-                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PersonId = table.Column<string>(type: "nvarchar(10)", nullable: true),
-                    TelevisionId = table.Column<string>(type: "nvarchar(10)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PeopleTelevisions", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_PeopleTelevisions_People_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "People",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PeopleTelevisions_Televisions_TelevisionId",
-                        column: x => x.TelevisionId,
-                        principalTable: "Televisions",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.InsertData(
                 table: "People",
                 columns: new[] { "ID", "BirthDate", "CountryBirthLocation", "Email", "FirstName", "LastName" },
@@ -140,23 +134,13 @@ namespace living_room_api.Migrations
 
             migrationBuilder.InsertData(
                 table: "Televisions",
-                columns: new[] { "ID", "Brand", "CreationDate", "Model", "isActive" },
-                values: new object[] { "1111111111", "Vony", null, "bleble", false });
+                columns: new[] { "ID", "Brand", "CreationDate", "Model", "Value", "is3D", "isBeingSold" },
+                values: new object[] { "1111111111", "Vony", null, "bleble", 0m, false, false });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "ID", "Email", "Name", "Password" },
-                values: new object[] { "admin-123", "admin@example.com", "admin", "V1ZkU2RHRlhOSGhOYWsw" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PeopleTelevisions_PersonId",
-                table: "PeopleTelevisions",
-                column: "PersonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PeopleTelevisions_TelevisionId",
-                table: "PeopleTelevisions",
-                column: "TelevisionId");
+                values: new object[] { "admin-1234", "admin@example.com", "admin", "V1ZkU2RHRlhOSGhOYWsw" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
@@ -174,6 +158,9 @@ namespace living_room_api.Migrations
                 name: "HomeTheaters");
 
             migrationBuilder.DropTable(
+                name: "People");
+
+            migrationBuilder.DropTable(
                 name: "PeopleComputers");
 
             migrationBuilder.DropTable(
@@ -183,13 +170,10 @@ namespace living_room_api.Migrations
                 name: "PeopleTelevisions");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "People");
-
-            migrationBuilder.DropTable(
                 name: "Televisions");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

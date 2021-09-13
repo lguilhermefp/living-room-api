@@ -35,7 +35,7 @@ namespace living_room_api.Controllers
         /// <returns>Lista com detalhes de todos os computadores</returns>
         /// <response code="200">Retorna a lista requisitada</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="500">Se houve falha na conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(IEnumerable<Computer>), 200)]
         [ProducesResponseType(401)]
         [ProducesResponseType(500)]
@@ -46,18 +46,18 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Retorna os detalhes da televisao requisitada
+        /// Retorna os detalhes da computador requisitada
         /// </summary>
         /// <remarks>
         ///     Exemplo de requisicao:
         ///         GET api/Computers/abcd-12345
         /// </remarks>
         /// <param name="ID"></param>
-        /// <returns>Os detalhes da televisao requisitada</returns>
-        /// <response code="200">Retorna a televisao requisitada</response>
-        /// <response code="400">Se não houver televisao com esse ID</response>
+        /// <returns>Os detalhes do computador requisitado</returns>
+        /// <response code="200">Retorna o computador requisitado</response>
+        /// <response code="400">Se não houver computador com esse ID</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-		/// <response code="500">Se houve falha de conexao com o banco de dados</response>
+		/// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(Computer), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -76,7 +76,7 @@ namespace living_room_api.Controllers
         }
 
 		/// <summary>
-    	/// Cria uma nova televisao
+    	/// Cria um novo computador
         /// </summary>
         /// <param name="computer"></param>
         /// <remarks>
@@ -87,12 +87,12 @@ namespace living_room_api.Controllers
         ///         
         ///         Campo "ID" precisa ter 10 caracteres
         /// </remarks>
-        /// <returns>Os detalhes da televisao criada</returns>
-        /// <response code="201">Retorna os detalhes da televisao criada</response>
+        /// <returns>Os detalhes do computador criado</returns>
+        /// <response code="201">Retorna os detalhes do computador criado</response>
         /// <response code="400">Se algum dos campos do "body" da requisicao possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="409">Se ja houver uma televisao com ID fornecido</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="409">Se ja houver um computador com ID fornecido</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(Computer), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -122,7 +122,7 @@ namespace living_room_api.Controllers
         }
 
 		/// <summary>
-        /// Altera informacoes de uma televisao existente
+        /// Altera informacoes de um computador existente
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="computer"></param>
@@ -132,10 +132,10 @@ namespace living_room_api.Controllers
         ///         
         ///         No "body", insira sua ID e a atualizacao dos campos ID, Brand, CreationDate(opcional) e isActive
         /// </remarks>
-        /// <response code="204">Atualiza a televisao requisitado</response>
-        /// <response code="400">Se nao existe televisao com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
+        /// <response code="204">Atualiza o computador requisitado</response>
+        /// <response code="400">Se nao existe computador com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -171,18 +171,18 @@ namespace living_room_api.Controllers
 
 
         /// <summary>
-        /// Exclui uma televisao existente
+        /// Exclui um computador existente
         /// </summary>
         /// <param name="ID"></param>
         /// <remarks>
         ///     Exemplo de requisicao:
         ///         Delete api/Computers/abcd-12345
         /// </remarks>
-        /// <returns>Retorna os detalhes da televisao excluida</returns>
-        /// <response code="204">Exclui uma televisao existente</response>
+        /// <returns>Retorna os detalhes do computador excluida</returns>
+        /// <response code="204">Exclui um computador existente</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="404">Se nao existe televisao com ID informado</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="404">Se nao existe computador com ID informado</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]

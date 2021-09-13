@@ -12,8 +12,8 @@ namespace living_room_api.Data
     {
         [Key]
         [Required]
-        [MinLength(9)]
-        [MaxLength(9)]
+        [MinLength(10)]
+        [MaxLength(10)]
         public string ID { get; set; }
 
         [Required]

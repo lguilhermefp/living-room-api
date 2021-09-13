@@ -37,13 +37,13 @@ namespace living_room_api.Controllers
         ///     No "body", insira os campos ID, Name, Email e Password
         /// 
         ///     Usuario generico (nao pode ser apagado):
-        ///         { "ID": "admin-123", "Name": "admin", "Email": "admin@example.com", "Password": "admin123" }
+        ///         { "ID": "admin-1234", "Name": "admin", "Email": "admin@example.com", "Password": "admin123" }
         ///     
         /// </remarks>
         /// <response code="200">Retorna um token de acesso a api</response>
         /// <response code="400">Se algum campo inserido possui valor invalido</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -97,7 +97,7 @@ namespace living_room_api.Controllers
         /// <response code="200">Retorna o usuario requisitado</response>
         /// <response code="400">Se não houver usuario com essa identificacao</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(User), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -132,7 +132,7 @@ namespace living_room_api.Controllers
         /// <response code="400">Se algum dos campos do "body" da requisicao possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="409">Se ja houver um usuario com ID ou Email fornecidos</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(User), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -176,7 +176,7 @@ namespace living_room_api.Controllers
         /// <response code="204">Atualiza o usuario requisitado</response>
         /// <response code="400">Se nao existe usuario com ID informado ou "body" possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -223,7 +223,7 @@ namespace living_room_api.Controllers
         /// <response code="204">Exclui um usuario existente</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="404">Se nao existe usuario com ID informado</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]

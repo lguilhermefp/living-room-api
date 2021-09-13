@@ -57,7 +57,7 @@ namespace living_room_api.Controllers
         /// <response code="200">Retorna a pessoa requisitada</response>
         /// <response code="400">Se não houver pessoa com esse ID</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-		/// <response code="500">Se houve falha de conexao com o banco de dados</response>
+		/// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(IEnumerable<PersonTelevision>), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -87,7 +87,7 @@ namespace living_room_api.Controllers
         /// <response code="200">Retorna a pessoa requisitada</response>
         /// <response code="400">Se não houver pessoa com esse ID</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-		/// <response code="500">Se houve falha de conexao com o banco de dados</response>
+		/// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(IEnumerable<PersonTelevision>), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -119,7 +119,7 @@ namespace living_room_api.Controllers
         /// <response code="204">Atualiza a pessoa requisitado</response>
         /// <response code="400">Se nao existe pessoa com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -170,7 +170,7 @@ namespace living_room_api.Controllers
         /// <response code="400">Se algum dos campos do "body" da requisicao possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="409">Se ja houver uma pessoa com ID ou Email fornecidos</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(PersonTelevision), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -211,7 +211,7 @@ namespace living_room_api.Controllers
         /// <response code="204">Exclui um produto existente</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="404">Se nao existe uma pessoa com ID informado</response>
-        /// <response code="500">Se houve falha de conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]

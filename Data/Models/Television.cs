@@ -12,11 +12,6 @@ namespace living_room_api.Data
 		[MinLength(10)]
         public string ID { get; set; }
 
-		// [MaxLength(10)]
-		// [MinLength(10)]
-		// [ForeignKey("Person")]
-		// public string PersonID { get; set; }
-
         [Required]
 		[MaxLength(60)]
         public string Brand { get; set; }
@@ -30,9 +25,20 @@ namespace living_room_api.Data
         [Display(Name = "Creation date")]
         public DateTime? CreationDate { get; set; }
 
-		[Required]
-        public Boolean isActive { get; set; }
+        [CustomValidation(typeof(Television), "NonNegativeValue")]
+        [Column(TypeName = "decimal(16, 2)")]
+        public decimal Value { get; set; }
 
-        // public virtual ICollection<Person> People { get; set; }
+        public static ValidationResult NonNegativeValue(decimal decimalNumber)
+        {
+            if (decimalNumber < 0)
+                return new ValidationResult("product value should not be negative");
+
+            return ValidationResult.Success;
+        }
+
+		public Boolean is3D { get; set; }
+
+        public Boolean isBeingSold { get; set; }
     }
 }

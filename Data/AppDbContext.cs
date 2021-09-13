@@ -27,7 +27,7 @@ namespace living_room_api.Data
         {
             modelBuilder.Entity<User>()
                 .HasData(
-                    new User { ID = "admin-123", Name = "admin", Email = "admin@example.com", Password = "V1ZkU2RHRlhOSGhOYWsw" }); //Senha descriptografada = "admin123"
+                    new User { ID = "admin-1234", Name = "admin", Email = "admin@example.com", Password = "V1ZkU2RHRlhOSGhOYWsw" }); //Senha descriptografada = "admin123"
 
 			modelBuilder.Entity<Person>()
 				.HasData(
@@ -74,7 +74,7 @@ namespace living_room_api.Data
 
 			modelBuilder.Entity<Television>()
 				.HasData(
-					new Television { ID = "1111111111", Brand = "Vony", Model = "bleble", isActive = false });
+					new Television { ID = "1111111111", Brand = "Vony", Model = "bleble", isBeingSold = false });
         }
     }
 }
