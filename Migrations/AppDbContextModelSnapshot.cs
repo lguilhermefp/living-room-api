@@ -135,10 +135,12 @@ namespace living_room_api.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("ComputerId")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("PersonId")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
@@ -154,10 +156,12 @@ namespace living_room_api.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("HomeTheaterId")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("PersonId")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
@@ -173,10 +177,12 @@ namespace living_room_api.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("PersonId")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("TelevisionId")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 

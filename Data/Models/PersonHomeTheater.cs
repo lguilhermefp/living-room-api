@@ -13,11 +13,13 @@ namespace living_room_api.Data
 		public string ID { get; set; }
 
 		[ForeignKey("Person")]
+		[Required]
 		[MaxLength(10)]
 		[MinLength(10)]
 		public string PersonId { get; set; }
 
 		[ForeignKey("HomeTheater")]
+		[Required]
 		[MaxLength(10)]
 		[MinLength(10)]
 		public string HomeTheaterId { get; set; }
