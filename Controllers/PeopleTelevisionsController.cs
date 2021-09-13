@@ -26,16 +26,16 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Retorna uma lista com detalhes de todos as pessoas relacoes entre pessoas e computadores
+        /// Retorna uma lista com detalhes de todos as relacoes entre pessoas e televisoes
         /// </summary>
         /// <remarks>
         ///     Requisicao padrao:
-        ///         Get api/PeopleTelevision/
+        ///         Get api/PeopleTelevisions/
         /// </remarks>
-        /// <returns>Lista com detalhes de todos as pessoas relacoes entre pessoas e computadores</returns>
+        /// <returns>Lista com detalhes de todos as relacoes entre pessoas e televisoes</returns>
         /// <response code="200">Retorna a lista requisitada</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="500">Se houve falha na conexao com o banco de dados</response>
+        /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(IEnumerable<PersonTelevision>), 200)]
         [ProducesResponseType(401)]
         [ProducesResponseType(500)]
@@ -46,16 +46,16 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Retorna os detalhes da pessoa requisitada
+        /// Retorna as relacoes entre uma pessoa e um ou mais televisoes
         /// </summary>
         /// <remarks>
         ///     Exemplo de requisicao:
-        ///         GET api/People/abcd-12345
+        ///         GET api/PeopleTelevisions/people/abcd-12345
         /// </remarks>
         /// <param name="personId"></param>
-        /// <returns>Os detalhes da pessoa requisitada</returns>
-        /// <response code="200">Retorna a pessoa requisitada</response>
-        /// <response code="400">Se não houver pessoa com esse ID</response>
+        /// <returns>Os detalhes da relacao requisitada</returns>
+        /// <response code="200">Retorna a relacao requisitada</response>
+        /// <response code="400">Se não houver relacao com esse ID</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
 		/// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(IEnumerable<PersonTelevision>), 200)]
@@ -76,16 +76,16 @@ namespace living_room_api.Controllers
         }
 
 		/// <summary>
-        /// Retorna os detalhes da pessoa requisitada
+        /// Retorna as relacoes entre uma televisao e uma ou mais pessoas
         /// </summary>
         /// <remarks>
         ///     Exemplo de requisicao:
-        ///         GET api/People/abcd-12345
+        ///         GET api/PeopleTelevisions/televisions/abcd-12345
         /// </remarks>
         /// <param name="televisionId"></param>
-        /// <returns>Os detalhes da pessoa requisitada</returns>
-        /// <response code="200">Retorna a pessoa requisitada</response>
-        /// <response code="400">Se não houver pessoa com esse ID</response>
+        /// <returns>Os detalhes da relacao requisitada</returns>
+        /// <response code="200">Retorna a relacao requisitada</response>
+        /// <response code="400">Se não houver relacao com esse ID</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
 		/// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(IEnumerable<PersonTelevision>), 200)]
@@ -106,18 +106,18 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Altera informacoes de uma pessoa existente
+        /// Altera informacoes de uma relacao existente
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="personTelevision"></param>
         /// <remarks>
         ///     Exemplo de requisicao:
-        ///         Put api/People/abcd-12345
+        ///         Put api/PeopleTelevisions/abcd-12345
         ///         
-        ///         No "body", insira sua ID e a atualizacao dos campos Nome, Email e Senha
+        ///         No "body", insira sua ID e a atualizacao dos campos PersonId e TelevisionId
         /// </remarks>
-        /// <response code="204">Atualiza a pessoa requisitado</response>
-        /// <response code="400">Se nao existe pessoa com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
+        /// <response code="204">Atualiza a relacao requisitada</response>
+        /// <response code="400">Se nao existe relacao com ID informado ou "body" possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
@@ -154,22 +154,22 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Cria uma nova pessoa
+        /// Cria uma nova relacao entre pessoa e televisao
         /// </summary>
         /// <param name="personTelevision"></param>
         /// <remarks>
         ///     Requisicao padrao:
-        ///         Post api/People/
+        ///         Post api/PeopleTelevisions/
         ///         
-        ///         No "body", insira os campos ID, Name, Email e Password
+        ///         No "body", insira os campos ID, PersonId e TelevisionId
         ///         
         ///         Campo "ID" precisa ter 10 caracteres
         /// </remarks>
-        /// <returns>Os detalhes da pessoa criada</returns>
-        /// <response code="201">Retorna os detalhes da pessoa criada</response>
+        /// <returns>Os detalhes da relacao criada</returns>
+        /// <response code="201">Retorna os detalhes da relacao criada</response>
         /// <response code="400">Se algum dos campos do "body" da requisicao possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="409">Se ja houver uma pessoa com ID ou Email fornecidos</response>
+        /// <response code="409">Se ja houver uma relacao com ID fornecido</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(PersonTelevision), 201)]
         [ProducesResponseType(400)]
@@ -200,17 +200,17 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Exclui uma pessoa existente
+        /// Exclui uma relacao existente
         /// </summary>
         /// <param name="ID"></param>
         /// <remarks>
         ///     Exemplo de requisicao:
-        ///         Delete api/TelevisionsPeople/abcd-12345
+        ///         Delete api/PeopleTelevisions/abcd-12345
         /// </remarks>
-        /// <returns>Retorna os detalhes da pessoa excluido</returns>
+        /// <returns>Retorna os detalhes da relacao excluida</returns>
         /// <response code="204">Exclui um produto existente</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="404">Se nao existe uma pessoa com ID informado</response>
+        /// <response code="404">Se nao existe uma relacao com ID informado</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(401)]
