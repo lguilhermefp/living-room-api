@@ -26,7 +26,7 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Retorna uma lista com detalhes de todos as relacoes entre pessoas e televisoes
+        /// Retorna uma lista com detalhes de todas as relacoes entre pessoas e televisoes
         /// </summary>
         /// <remarks>
         ///     Requisicao padrao:
@@ -46,7 +46,7 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Retorna as relacoes entre uma pessoa e um ou mais televisoes
+        /// Retorna as relacoes entre uma pessoa e uma ou mais televisoes
         /// </summary>
         /// <remarks>
         ///     Exemplo de requisicao:
@@ -208,7 +208,7 @@ namespace living_room_api.Controllers
         ///         Delete api/PeopleTelevisions/abcd-12345
         /// </remarks>
         /// <returns>Retorna os detalhes da relacao excluida</returns>
-        /// <response code="204">Exclui um produto existente</response>
+        /// <response code="204">Exclui uma relacao existente</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="404">Se nao existe uma relacao com ID informado</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
@@ -235,26 +235,6 @@ namespace living_room_api.Controllers
         public bool IDNotAvailable(string ID)
         {
             return _context.PeopleTelevisions.Any(e => e.ID == ID);
-        }
-
-        public static string EncodePasswordToBase64(string password)
-        {
-            try
-            {
-                byte[] encData_byte = new byte[password.Length];
-                encData_byte = System.Text.Encoding.UTF8.GetBytes(password);
-                string encodedData = Convert.ToBase64String(encData_byte);
-                if (encodedData.Length > 20)
-                    encodedData = encodedData.Substring(0, 20);
-                else
-                    encodedData = EncodePasswordToBase64(encodedData);
-
-                return encodedData;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error in base64Encode ${ex.Message}");
-            }
         }
     }
 }

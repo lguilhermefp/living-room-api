@@ -208,7 +208,7 @@ namespace living_room_api.Controllers
         ///         Delete api/ComputersPeople/abcd-12345
         /// </remarks>
         /// <returns>Retorna os detalhes da relacao excluida</returns>
-        /// <response code="204">Exclui um produto existente</response>
+        /// <response code="204">Exclui uma relacao existente</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="404">Se nao existe uma relacao com ID informado</response>
         /// <response code="500">Se o banco de dados retornou erro</response>

@@ -16,8 +16,8 @@ namespace living_room_api.Migrations
                     Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Value = table.Column<decimal>(type: "decimal(16,2)", nullable: false),
-                    isBeingSold = table.Column<bool>(type: "bit", nullable: false),
-                    isDesktop = table.Column<bool>(type: "bit", nullable: false)
+                    isDesktop = table.Column<bool>(type: "bit", nullable: false),
+                    isBeingSold = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,8 +33,8 @@ namespace living_room_api.Migrations
                     Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Value = table.Column<decimal>(type: "decimal(16,2)", nullable: false),
-                    isBeingSold = table.Column<bool>(type: "bit", nullable: false),
-                    readsBlueRay = table.Column<bool>(type: "bit", nullable: false)
+                    readsBlueRay = table.Column<bool>(type: "bit", nullable: false),
+                    isBeingSold = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

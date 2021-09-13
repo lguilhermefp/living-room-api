@@ -10,7 +10,7 @@ using living_room_api.Data;
 namespace living_room_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210913091554_new-migration")]
+    [Migration("20210913105118_new-migration")]
     partial class newmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -34,8 +34,6 @@ namespace living_room_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
             var signingKey = "ThisismytestkeyThisismytestkeyThisismytestkey";
             services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(signingKey));
 
@@ -60,15 +58,15 @@ namespace living_room_api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { 
-                    Title = "API de usu�rios e produtos",
+                    Title = "API de salas de estar",
                     Version = "v1",
-                    Description = "API Web ASP.NET Core para processo seletivo da WLS Solu��es",
+                    Description = "API Web ASP.NET Core para processo seletivo da Ploomes",
                     TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
                     {
                         Name = "Luis Guilherme Fernandes Pereira",
                         Email = "luis-guilherme.pereira@unesp.br",
-                        Url = new Uri("https://github.com/lguilhermefp")
+                        Url = new Uri("https://github.com/lguilhermefp"),
                     },
                     License = new OpenApiLicense
                     {
@@ -80,11 +78,11 @@ namespace living_room_api
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description =
-                        @"Header de autoriza��o JWT Bearer para acesso da API.
+                        @"Header de autorizacao JWT Bearer para acesso da API.
                         Requisicao para obter um token de autorizacao:
                         Post /api/Users/authenticate
                         Digite 'Bearer <seu-token>' na caixa de texto abaixo.
-                        Exemplo: 'Bearer [espaco] r2kjldsfnksdfh.839riwei9owewfefiaw398d3c8u'",
+                        Exemplo: 'Bearer [espaco] xr32ckjldsfnksdfch.839riwvei9owewfefbbiaw398d3c8u'",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
@@ -114,21 +112,8 @@ namespace living_room_api
                 c.IncludeXmlComments(xmlPath);
             });
 
-            // string sqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
-
-			// services.AddDbContextPool<CoreContext>(options =>
-			// 	options.UseSqlServer(sqlConnectionStr));
-
-			// services.AddDbContext<ApplicationDbContext>(
-        	// 	options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
-
 			services.AddDbContext<AppDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-    		// services.AddIdentity<ApplicationUser, IdentityRole>()
-        	// 	.AddEntityFrameworkStores<AppDbContext>()
-        	// 	.AddDefaultTokenProviders();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

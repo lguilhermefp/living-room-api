@@ -46,7 +46,7 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Retorna os detalhes do home theater requisitada
+        /// Retorna os detalhes do home theater requisitado
         /// </summary>
         /// <remarks>
         ///     Exemplo de requisicao:
@@ -76,7 +76,7 @@ namespace living_room_api.Controllers
         }
 
 		/// <summary>
-    	/// Cria umo novo home theater
+    	/// Cria um novo home theater
         /// </summary>
         /// <param name="homeTheater"></param>
         /// <remarks>

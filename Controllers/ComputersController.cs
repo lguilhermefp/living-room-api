@@ -46,7 +46,7 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Retorna os detalhes da computador requisitada
+        /// Retorna os detalhes do computador requisitada
         /// </summary>
         /// <remarks>
         ///     Exemplo de requisicao:

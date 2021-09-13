@@ -132,7 +132,7 @@ namespace living_room_api.Controllers
         ///         
         ///         No "body", insira os campos ID, Brand, Model, CreationDate, Value, is3D, isBeingSold
         /// </remarks>
-        /// <response code="204">Atualiza a televisao requisitado</response>
+        /// <response code="204">Atualiza a televisao requisitada</response>
         /// <response code="400">Se nao existe televisao com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="500">Se o banco de dados retournou erro</response>
