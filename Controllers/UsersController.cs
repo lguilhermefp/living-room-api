@@ -184,6 +184,9 @@ namespace living_room_api.Controllers
         [HttpPut("{ID}")]
         public async Task<IActionResult> PutUser(string ID, User user)
         {
+			if(ID == "admin-123")
+				return BadRequest("O usuario generico nao pode ser modificado");
+
             user.Password = EncodePasswordToBase64(user.Password);
             if (ID != user.ID)
             {
