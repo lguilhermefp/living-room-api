@@ -35,10 +35,12 @@ Informe no corpo da requisição o objeto JSON com as informações de usuário 
   Email: "admin@example.com",
   Senha: "admin123"
 }
-
-### Hospedagem
 ~~~
 
 A respota do servidor será um token de autenticação JWT Bearer.
 Agora, sempre que for fazer uma requisição, insira o campo authorization em seu header com o valor 'Bearer \[espaço\] \[seu-token\]' e você será considerado autorizado.
 O token de autenticação expira em uma hora, garantindo a segurança do usuário.
+
+
+### Hospedagem
+hospedado em https://living-room-api.azurewebsites.net/swagger/index.html
