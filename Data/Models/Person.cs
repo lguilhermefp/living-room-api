@@ -11,23 +11,7 @@ namespace living_room_api.Data
 		[MinLength(10)]
         [MaxLength(10)]
         public string ID { get; set; }
-
-		// [MinLength(10)]
-        // [MaxLength(10)]
-		// [ForeignKey("Television")]
-
-		// public string TelevisionID { get; set; }
-		// [MinLength(10)]
-        // [MaxLength(10)]
-		// [ForeignKey("Computer")]
 		
-		// public string ComputerID { get; set; }
-		// [MinLength(10)]
-        // [MaxLength(10)]
-		// [ForeignKey("HomeTheater")]
-
-		// public string HomeTheaterID { get; set; }
-
         [Required]
         [MaxLength(60)]
         [Display(Name = "Last Name")]
@@ -61,9 +45,5 @@ namespace living_room_api.Data
 		[Required]
         [EmailAddress]
         public string Email { get; set; }
-
-        // public virtual ICollection<Television> Televisions { get; set; }
-        // public virtual ICollection<Computer> Computers { get; set; }
-        // public virtual ICollection<HomeTheater> HomeTheaters { get; set; }
     }
 }

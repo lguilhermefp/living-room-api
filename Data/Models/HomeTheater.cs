@@ -12,11 +12,6 @@ namespace living_room_api.Data
 		[MinLength(10)]
         public string ID { get; set; }
 
-		// [MaxLength(10)]
-		// [MinLength(10)]
-		// [ForeignKey("Person")]
-		// public string PersonID { get; set; }
-
         [Required]
 		[MaxLength(60)]
         public string Brand { get; set; }

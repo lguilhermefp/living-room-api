@@ -21,7 +21,5 @@ namespace living_room_api.Data
 		[MaxLength(10)]
 		[MinLength(10)]
 		public string ComputerId { get; set; }
-		// public Person Person { get; set; }
-		// public Computer Computer { get; set; }
 	}
 }
