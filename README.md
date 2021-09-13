@@ -5,7 +5,7 @@
 ### Para rodar o projeto
 
 ~~~bash
-git clone
+git clone https://github.com/lguilhermefp/living-room-api.git
 ~~~
 ~~~
 dotnet restore
