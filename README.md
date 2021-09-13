@@ -7,7 +7,10 @@
 ~~~bash
 git clone https://github.com/lguilhermefp/living-room-api.git
 ~~~
+~~~bash
+cd living-room-api
 ~~~
+~~~bash
 dotnet restore
 ~~~
 ~~~
