@@ -130,7 +130,7 @@ namespace living_room_api.Controllers
         ///     Exemplo de requisicao:
         ///         Put api/Computers/abcd-12345
         ///         
-        ///         No "body", insira sua ID e a atualizacao dos campos ID, Brand, CreationDate(opcional) e isActive
+        ///         No "body", insira os campos ID, Brand, CreationDate, Value, isBeingSold, isDesktop
         /// </remarks>
         /// <response code="204">Atualiza o computador requisitado</response>
         /// <response code="400">Se nao existe computador com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
