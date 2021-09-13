@@ -26,13 +26,13 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Retorna uma lista com detalhes de todos os computadores
+        /// Retorna uma lista com detalhes de todos os home theaters
         /// </summary>
         /// <remarks>
         ///     Requisicao padrao:
         ///         Get api/HomeTheaters/
         /// </remarks>
-        /// <returns>Lista com detalhes de todos os computadores</returns>
+        /// <returns>Lista com detalhes de todos os home theaters</returns>
         /// <response code="200">Retorna a lista requisitada</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
@@ -46,16 +46,16 @@ namespace living_room_api.Controllers
         }
 
         /// <summary>
-        /// Retorna os detalhes da televisao requisitada
+        /// Retorna os detalhes do home theater requisitada
         /// </summary>
         /// <remarks>
         ///     Exemplo de requisicao:
         ///         GET api/HomeTheaters/abcd-12345
         /// </remarks>
         /// <param name="ID"></param>
-        /// <returns>Os detalhes da televisao requisitada</returns>
-        /// <response code="200">Retorna a televisao requisitada</response>
-        /// <response code="400">Se não houver televisao com esse ID</response>
+        /// <returns>Os detalhes do home theater requisitado</returns>
+        /// <response code="200">Retorna o home theater requisitado</response>
+        /// <response code="400">Se não houver home theater com esse ID</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
 		/// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(HomeTheater), 200)]
@@ -76,22 +76,22 @@ namespace living_room_api.Controllers
         }
 
 		/// <summary>
-    	/// Cria uma nova televisao
+    	/// Cria umo novo home theater
         /// </summary>
         /// <param name="homeTheater"></param>
         /// <remarks>
         ///     Requisicao padrao:
-        ///         Post api/People/
+        ///         Post api/HomeTheaters/
         ///         
-        ///         No "body", insira os campos ID, Brand, CreationDate(opcional) e isActive
+        ///         No "body", insira os campos ID, Brand, Model, CreationDate, Value, isBeingSold, readsBlueRay
         ///         
         ///         Campo "ID" precisa ter 10 caracteres
         /// </remarks>
-        /// <returns>Os detalhes da televisao criada</returns>
-        /// <response code="201">Retorna os detalhes da televisao criada</response>
+        /// <returns>Os detalhes do home theater criado</returns>
+        /// <response code="201">Retorna os detalhes do home theater criado</response>
         /// <response code="400">Se algum dos campos do "body" da requisicao possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="409">Se ja houver uma televisao com ID fornecido</response>
+        /// <response code="409">Se ja houver um home theater com o ID fornecido</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(typeof(HomeTheater), 201)]
         [ProducesResponseType(400)]
@@ -122,7 +122,7 @@ namespace living_room_api.Controllers
         }
 
 		/// <summary>
-        /// Altera informacoes de uma televisao existente
+        /// Altera informacoes de um home theater existente
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="homeTheater"></param>
@@ -130,10 +130,10 @@ namespace living_room_api.Controllers
         ///     Exemplo de requisicao:
         ///         Put api/HomeTheater/abcd-12345
         ///         
-        ///         No "body", insira sua ID e a atualizacao dos campos ID, Brand, CreationDate(opcional) e isActive
+        ///         No "body", insira os campos ID, Brand, Model, CreationDate, Value, isBeingSold, readsBlueRay
         /// </remarks>
-        /// <response code="204">Atualiza a televisao requisitado</response>
-        /// <response code="400">Se nao existe televisao com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
+        /// <response code="204">Atualiza o home theater requisitado</response>
+        /// <response code="400">Se nao existe home theater com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
@@ -171,17 +171,17 @@ namespace living_room_api.Controllers
 
 
         /// <summary>
-        /// Exclui uma televisao existente
+        /// Exclui um home theater existente
         /// </summary>
         /// <param name="ID"></param>
         /// <remarks>
         ///     Exemplo de requisicao:
         ///         Delete api/HomeTheaters/abcd-12345
         /// </remarks>
-        /// <returns>Retorna os detalhes da televisao excluida</returns>
-        /// <response code="204">Exclui uma televisao existente</response>
+        /// <returns>Retorna os detalhes do home theater excluida</returns>
+        /// <response code="204">Exclui um home theater existente</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
-        /// <response code="404">Se nao existe televisao com ID informado</response>
+        /// <response code="404">Se nao existe home theater com ID informado</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
         [ProducesResponseType(204)]
         [ProducesResponseType(401)]
@@ -205,7 +205,7 @@ namespace living_room_api.Controllers
         [NonAction]
         public bool IDNotAvailable(string ID)
         {
-            return _context.People.Any(e => e.ID == ID);
+            return _context.HomeTheaters.Any(e => e.ID == ID);
         }
     }
 }

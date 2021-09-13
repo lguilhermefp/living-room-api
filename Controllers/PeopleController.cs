@@ -86,7 +86,7 @@ namespace living_room_api.Controllers
         ///         
         ///         No "body", insira sua ID e a atualizacao dos campos Nome, Email e Senha
         /// </remarks>
-        /// <response code="204">Atualiza a pessoa requisitado</response>
+        /// <response code="204">Atualiza a pessoa requisitada</response>
         /// <response code="400">Se nao existe pessoa com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
@@ -178,7 +178,7 @@ namespace living_room_api.Controllers
         ///         Delete api/People/abcd-12345
         /// </remarks>
         /// <returns>Retorna os detalhes da pessoa excluido</returns>
-        /// <response code="204">Exclui um produto existente</response>
+        /// <response code="204">Exclui uma pessoa existente</response>
         /// <response code="401">Se o autor da requisicao nao possui autorizacao</response>
         /// <response code="404">Se nao existe uma pessoa com ID informado</response>
         /// <response code="500">Se o banco de dados retornou erro</response>
@@ -201,12 +201,17 @@ namespace living_room_api.Controllers
             return NoContent();
         }
 
-        [NonAction]
+       [NonAction]
         public bool IDOrEmailNotAvailable(string ID, string email)
         {
-            return _context.People.Any(e => e.ID == ID || e.Email == email);
+			return IDNotAvailable(ID) || EmailNotAvailable(email);
         }
 
+        [NonAction]
+        public bool EmailNotAvailable(string email)
+        {
+            return _context.People.Any(e => e.Email == email);
+        }
         [NonAction]
         public bool IDNotAvailable(string ID)
         {

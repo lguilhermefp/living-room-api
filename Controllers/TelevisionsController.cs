@@ -81,9 +81,9 @@ namespace living_room_api.Controllers
         /// <param name="television"></param>
         /// <remarks>
         ///     Requisicao padrao:
-        ///         Post api/People/
+        ///         Post api/Televisions/
         ///         
-        ///         No "body", insira os campos ID, Brand, CreationDate(opcional) e isActive
+        ///         No "body", insira os campos ID, Brand, Model, CreationDate, Value, is3D, isBeingSold
         ///         
         ///         Campo "ID" precisa ter 10 caracteres
         /// </remarks>
@@ -130,7 +130,7 @@ namespace living_room_api.Controllers
         ///     Exemplo de requisicao:
         ///         Put api/Television/abcd-12345
         ///         
-        ///         No "body", insira sua ID e a atualizacao dos campos ID, Brand, CreationDate(opcional) e isActive
+        ///         No "body", insira os campos ID, Brand, Model, CreationDate, Value, is3D, isBeingSold
         /// </remarks>
         /// <response code="204">Atualiza a televisao requisitado</response>
         /// <response code="400">Se nao existe televisao com ID informada ou "body" possui valor invalido ou o formato e ilegivel</response>
@@ -205,7 +205,7 @@ namespace living_room_api.Controllers
         [NonAction]
         public bool IDNotAvailable(string ID)
         {
-            return _context.People.Any(e => e.ID == ID);
+            return _context.Televisions.Any(e => e.ID == ID);
         }
     }
 }

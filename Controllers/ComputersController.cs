@@ -81,9 +81,9 @@ namespace living_room_api.Controllers
         /// <param name="computer"></param>
         /// <remarks>
         ///     Requisicao padrao:
-        ///         Post api/People/
+        ///         Post api/Computers/
         ///         
-        ///         No "body", insira os campos ID, Brand, CreationDate(opcional) e isActive
+        ///         No "body", insira os campos ID, Brand, CreationDate, Value, isBeingSold, isDesktop
         ///         
         ///         Campo "ID" precisa ter 10 caracteres
         /// </remarks>
@@ -128,7 +128,7 @@ namespace living_room_api.Controllers
         /// <param name="computer"></param>
         /// <remarks>
         ///     Exemplo de requisicao:
-        ///         Put api/Computer/abcd-12345
+        ///         Put api/Computers/abcd-12345
         ///         
         ///         No "body", insira sua ID e a atualizacao dos campos ID, Brand, CreationDate(opcional) e isActive
         /// </remarks>
